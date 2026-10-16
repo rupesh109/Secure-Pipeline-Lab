@@ -93,9 +93,7 @@ security checks on pull requests and pushes to the `main` branch.
                   |
                   v
            Merge Permitted
-
-
-
+---
 ## 🔐 Security Gates
 
 | Security Gate | Tool | Purpose |
