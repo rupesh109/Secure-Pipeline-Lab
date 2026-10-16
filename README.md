@@ -94,7 +94,9 @@ security checks on pull requests and pushes to the `main` branch.
                   v
            Merge Permitted
 ---
-## 🔐 Security Gates
+
+
+### 🔐 Security Gates
 
 | Security Gate | Tool | Purpose |
 |:---|:---|:---|
@@ -105,7 +107,7 @@ security checks on pull requests and pushes to the `main` branch.
 | <h3>Container Scanning</h3> | Docker + Trivy | Scan images for vulnerabilities |
 | <h3>Merge Protection</h3> | GitHub Rulesets | Enforce required checks |
 
-## 🧰 Technology Stack
+### 🧰 Technology Stack
 
 | Category | Technology |
 |:---|:---|
@@ -139,7 +141,7 @@ security checks on pull requests and pushes to the `main` branch.
 4. **Image Scanning:** Trivy scans the built image for vulnerabilities.
 5. **Merge Enforcement:** GitHub requires the configured security checks to pass.
 
-### 🚀 Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -154,6 +156,21 @@ security checks on pull requests and pushes to the `main` branch.
 git clone https://github.com/rupesh109/Secure-Pipeline-Lab.git
 cd Secure-Pipeline-Lab
 ```
+
+### Set Up Python
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Build the Docker Image
+
+```bash
+docker build -t secure-pipeline-lab:local .
+```
+
 
 ### Set Up Python
 
