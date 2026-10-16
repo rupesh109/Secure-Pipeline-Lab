@@ -14,3 +14,6 @@ def index():
 @app.get("/healthz")
 def healthz():
     return jsonify({"status": "healthy"}), 200
+
+# Synthetic test credential for Gitleaks validation only
+AWS_ACCESS_KEY_ID = "AKIAIOSFODNN7EXAMPLE"
