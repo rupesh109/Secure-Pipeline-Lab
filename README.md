@@ -93,7 +93,8 @@ security checks on pull requests and pushes to the `main` branch.
                   |
                   v
            Merge Permitted
-
+# Secure-Pipeline-Lab
+# Secure-Pipeline-Lab
 ---
 
 ## 🔐 Security Gates
