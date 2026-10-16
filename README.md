@@ -93,33 +93,32 @@ security checks on pull requests and pushes to the `main` branch.
                   |
                   v
            Merge Permitted
-# Secure-Pipeline-Lab
-# Secure-Pipeline-Lab
----
+
+
 
 ## 🔐 Security Gates
 
 | Security Gate | Tool | Purpose |
 |:---|:---|:---|
-| Secret Detection | Gitleaks | Detect exposed credentials |
-| Static Analysis | Semgrep | Identify insecure application code |
-| Dependency Scanning | Trivy | Detect vulnerable dependencies |
-| Configuration Scanning | Trivy | Identify configuration risks |
-| Container Scanning | Docker + Trivy | Scan images for vulnerabilities |
-| Merge Protection | GitHub Rulesets | Enforce required checks |
+| <h3>Secret Detection</h3> | Gitleaks | Detect exposed credentials |
+| <h3>Static Analysis</h3> | Semgrep | Identify insecure application code |
+| <h3>Dependency Scanning</h3> | Trivy | Detect vulnerable dependencies |
+| <h3>Configuration Scanning</h3> | Trivy | Identify configuration risks |
+| <h3>Container Scanning</h3> | Docker + Trivy | Scan images for vulnerabilities |
+| <h3>Merge Protection</h3> | GitHub Rulesets | Enforce required checks |
 
 ## 🧰 Technology Stack
 
 | Category | Technology |
 |:---|:---|
-| Operating System | Kali Linux |
-| CI/CD | GitHub Actions |
-| Application | Python, Flask |
-| Security Analysis | Semgrep |
-| Secret Detection | Gitleaks |
-| Vulnerability Scanning | Trivy |
-| Containerization | Docker |
-| Version Control | Git and GitHub |
+| <h3>Operating System</h3> | Kali Linux |
+| <h3>CI/CD</h3> | GitHub Actions |
+| <h3>Application</h3> | Python, Flask |
+| <h3>Security Analysis</h3> | Semgrep |
+| <h3>Secret Detection</h3> | Gitleaks |
+| <h3>Vulnerability Scanning</h3> | Trivy |
+| <h3>Containerization</h3> | Docker |
+| <h3>Version Control</h3> | Git and GitHub |
 
 ## 📂 Repository Structure
 
@@ -142,7 +141,7 @@ security checks on pull requests and pushes to the `main` branch.
 4. **Image Scanning:** Trivy scans the built image for vulnerabilities.
 5. **Merge Enforcement:** GitHub requires the configured security checks to pass.
 
-## 🚀 Getting Started
+### 🚀 Getting Started
 
 ### Prerequisites
 
@@ -153,28 +152,34 @@ security checks on pull requests and pushes to the `main` branch.
 
 ### Clone the Repository
 
-    git clone https://github.com/rupesh109/Secure-Pipeline-Lab.git
-    cd Secure-Pipeline-Lab
+```bash
+git clone https://github.com/rupesh109/Secure-Pipeline-Lab.git
+cd Secure-Pipeline-Lab
+```
 
 ### Set Up Python
 
-    python3 -m venv .venv
-    source .venv/bin/activate
-    pip install -r requirements.txt
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
 ### Build the Docker Image
 
-    docker build -t secure-pipeline-lab:local .
+```bash
+docker build -t secure-pipeline-lab:local .
+```
 
 ## 🧪 Security Testing
 
 | Test Case | Expected Result |
 |:---|:---|
-| Synthetic leaked secret | Secret scan fails |
-| Insecure Python pattern | SAST fails when detected |
-| Vulnerable dependency | Trivy fails when policy criteria are met |
-| Insecure container configuration | Relevant scan fails when detected |
-| Corrected pull request | Required checks pass |
+| <h3>Synthetic leaked secret</h3> | Secret scan fails |
+| <h3>Insecure Python pattern</h3> | SAST fails when detected |
+| <h3>Vulnerable dependency</h3> | Trivy fails when policy criteria are met |
+| <h3>Insecure container configuration</h3> | Relevant scan fails when detected |
+| <h3>Corrected pull request</h3> | Required checks pass |
 
 All test credentials must be synthetic. Never commit real API keys, passwords, or access tokens.
 
@@ -218,6 +223,7 @@ DevSecOps | Cloud Security | CI/CD | Container Security
 
 <div align="center">
 
-**Secure by design. Tested continuously. Delivered confidently.**
+**Secure by design. Tested continuously. Delivered confidently.** 
 
 </div>
+
