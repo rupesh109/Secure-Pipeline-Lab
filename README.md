@@ -93,107 +93,130 @@ security checks on pull requests and pushes to the `main` branch.
                   |
                   v
            Merge Permitted
-# Secure-Pipeline-Lab
-# Secure-Pipeline-Lab
-Enforcement principle: A pull request should not be mergeable when
-a required security check fails. This requires the corresponding GitHub
-branch protection or ruleset configuration in addition to the workflow.
-| Gate                      | Tool                     | Purpose                                                   |
-| ------------------------- | ------------------------ | --------------------------------------------------------- |
-| Secret detection          | Gitleaks                 | Detect exposed credentials and secrets                    |
-| Static analysis           | Semgrep                  | Identify potentially insecure application code            |
-| Dependency scanning       | Trivy                    | Detect vulnerable dependencies                            |
-| Misconfiguration scanning | Trivy                    | Identify supported infrastructure and configuration risks |
-| Container scanning        | Docker + Trivy           | Detect vulnerabilities in the built image                 |
-| Merge enforcement         | GitHub branch protection | Require security checks before merging                    |
 
-Security policy
+---
 
-The pipeline is configured to fail on findings that meet its specified
-severity thresholds.
+## 🔐 Security Gates
 
-High and critical findings are targeted by the Trivy scans.
-Unfixed vulnerabilities are ignored by the current Trivy configuration.
-Semgrep runs with Python and OWASP Top 10 rulesets.
-Gitleaks checks repository history through a full checkout.
+| Security Gate | Tool | Purpose |
+|:---|:---|:---|
+| Secret Detection | Gitleaks | Detect exposed credentials |
+| Static Analysis | Semgrep | Identify insecure application code |
+| Dependency Scanning | Trivy | Detect vulnerable dependencies |
+| Configuration Scanning | Trivy | Identify configuration risks |
+| Container Scanning | Docker + Trivy | Scan images for vulnerabilities |
+| Merge Protection | GitHub Rulesets | Enforce required checks |
 
-The exact results depend on the tools' rulesets, database versions,
-project dependencies, and repository contents.
+## 🧰 Technology Stack
 
-
-| Category               | Technology     |
-| ---------------------- | -------------- |
-| Operating system       | Kali Linux     |
-| CI/CD                  | GitHub Actions |
-| Application            | Python, Flask  |
-| Static analysis        | Semgrep        |
-| Secret detection       | Gitleaks       |
-| Vulnerability scanning | Trivy          |
-| Containerization       | Docker         |
-| Version control        | Git and GitHub |
-| Workflow format        | YAML           |
-
+| Category | Technology |
+|:---|:---|
+| Operating System | Kali Linux |
+| CI/CD | GitHub Actions |
+| Application | Python, Flask |
+| Security Analysis | Semgrep |
+| Secret Detection | Gitleaks |
+| Vulnerability Scanning | Trivy |
+| Containerization | Docker |
+| Version Control | Git and GitHub |
 
 ## 📂 Repository Structure
 
-secure-pipeline/
-├── .github/
-│   └── workflows/
-│       └── ci-security.yml
-├── app.py
-├── requirements.txt
-├── Dockerfile
-├── .dockerignore
-├── .trivyignore.yaml
-└── README.md
+    Secure-Pipeline-Lab/
+    ├── .github/
+    │   └── workflows/
+    │       └── ci-security.yml
+    ├── app.py
+    ├── requirements.txt
+    ├── Dockerfile
+    ├── .dockerignore
+    ├── .trivyignore.yaml
+    └── README.md
 
-### ⚙️ How the Pipeline Works
-1. Developer opens a pull request
+## ⚙️ How It Works
 
-GitHub Actions starts the workflow when a pull request is opened
-or when code is pushed to main.
+1. **Code Submission:** A developer pushes code or opens a pull request.
+2. **Security Analysis:** Gitleaks, Semgrep, and Trivy run security checks.
+3. **Container Build:** Docker builds the application image.
+4. **Image Scanning:** Trivy scans the built image for vulnerabilities.
+5. **Merge Enforcement:** GitHub requires the configured security checks to pass.
 
-2. Security checks run
+## 🚀 Getting Started
 
-The pipeline performs secret detection, static analysis, and
-filesystem scanning.
+### Prerequisites
 
-3. Container image is built
+- Git
+- Python 3
+- Docker
+- GitHub account
 
-After the first three jobs succeed, the pipeline builds the Docker
-image from the project Dockerfile.
+### Clone the Repository
 
-4. Image vulnerability scan runs
+    git clone https://github.com/rupesh109/Secure-Pipeline-Lab.git
+    cd Secure-Pipeline-Lab
 
-Trivy scans the built image for findings at the configured severity
-threshold.
+### Set Up Python
 
-5. Merge protection enforces the result
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
 
-Once the required checks are configured in GitHub branch protection,
-a failing required check prevents the pull request from being merged.
+### Build the Docker Image
 
+    docker build -t secure-pipeline-lab:local .
 
+## 🧪 Security Testing
 
-🛣️ Future Improvements
-Pin the Semgrep container image by digest.
-Add automated dependency update management.
-Generate and publish a Software Bill of Materials (SBOM).
-Add container image signing and provenance verification.
-Use OIDC for cloud deployments instead of long-lived cloud keys.
-Add deployment policies and runtime monitoring.
-Integrate additional security reporting into the pipeline.
-👨‍💻 Author
+| Test Case | Expected Result |
+|:---|:---|
+| Synthetic leaked secret | Secret scan fails |
+| Insecure Python pattern | SAST fails when detected |
+| Vulnerable dependency | Trivy fails when policy criteria are met |
+| Insecure container configuration | Relevant scan fails when detected |
+| Corrected pull request | Required checks pass |
 
-Rupesh Kumar Jha
+All test credentials must be synthetic. Never commit real API keys, passwords, or access tokens.
+
+## 🔒 Branch Protection
+
+Configure GitHub branch protection to require these checks:
+
+- `secrets`
+- `sast`
+- `deps-and-iac`
+- `build-scan`
+
+A failed required check must prevent merging into `main`.
+
+## 📊 Results and Evidence
+
+- [ ] Successful baseline pipeline
+- [ ] Secret detection test
+- [ ] SAST test
+- [ ] Dependency scanning test
+- [ ] Container scanning test
+- [ ] Pull request blocked by a failed check
+- [ ] Successful pipeline after remediation
+
+## 🛣️ Future Improvements
+
+- Generate a Software Bill of Materials (SBOM).
+- Automate dependency updates.
+- Pin container images by digest.
+- Add container image signing.
+- Use OIDC for cloud deployments.
+- Integrate centralized security reporting.
+
+## 👨‍💻 Author
+
+**Rupesh Kumar Jha**
 
 DevSecOps | Cloud Security | CI/CD | Container Security
 
-This project demonstrates practical implementation of security
-controls throughout the software delivery lifecycle.
+---
 
-📄 License
+<div align="center">
 
-This project is intended for educational and portfolio use.
-An MIT license may be added if the repository is distributed under
-that license.
+**Secure by design. Tested continuously. Delivered confidently.**
+
+</div>
